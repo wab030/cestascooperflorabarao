@@ -1,0 +1,15 @@
+.SideBar {
+  width: 30%;
+  float: left;
+  /* border: 1px solid grey; */
+  padding: 1rem;
+  background-color: rgba(224, 49, 0, 0.2);
+  border-radius: 5px;
+  box-shadow: 5px 10px #000000;
+}
+
+.Logo {
+  display: block;
+  margin: auto;
+}
+
