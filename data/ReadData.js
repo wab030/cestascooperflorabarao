@@ -26,10 +26,10 @@ const fs = require('fs');
 const fileToWrite = 'cooperflorabarao.js';
 
 // Prod DB
-// const serviceAccount = require('../../cestascooperflorabarao-firebase-adminsdk-kg42n-264249460c.json');
+const serviceAccount = require('../../cestascooperflorabarao-firebase-adminsdk-kg42n-264249460c.json');
 
 // Dev DB
-const serviceAccount = require('../../cestascooperflorabarao-dev-firebase-adminsdk-hopm6-3604f3476c.json');
+// const serviceAccount = require('../../cestascooperflorabarao-dev-firebase-adminsdk-hopm6-3604f3476c.json');
 
 // const serviceAccount = require('../../cestascooperflorabarao-dev-firebase-adminsdk-hopm6-8a8fcf03f3.json');
 // const databaseURL = 'https://cestascooperflorabarao-dev-default-rtdb.asia-southeast1.firebasedatabase.app';
@@ -60,6 +60,8 @@ const getData = async () => {
   let users;
   db.collection('users').get().then(snap => {
     users = snap.size // will return the collection size
+      console.log('Users', users);
+
   });
 
 
@@ -83,7 +85,7 @@ const getData = async () => {
       '},\n';
     fs.appendFile(fileToWrite, lineToStore + ' ', async function (err) {
       if (err) return console.log(err);
-      console.log("Gravando grupo ", lineToStore);
+      // console.log("Gravando grupo ", lineToStore);
     });
   });
 
@@ -93,7 +95,7 @@ const getData = async () => {
   let productsAux = await db.collection('products').get();
   productsAux.forEach((doc) => {
     // console.log(doc.data());
-    let lineToStore = '"' + doc.data().name + '",';
+    let lineToStore = '"' + doc.data().name.replaceAll('"','') + '",';
     fs.appendFile(fileToWrite, lineToStore + ' ', async function (err) {
       if (err) return console.log(err);
       // console.log("Gravando produto ", lineToStore);
@@ -128,7 +130,7 @@ const getData = async () => {
       i++;
     }
     if (!deliveryExists) {
-      console.log('Novo pedido');
+      // console.log('Novo pedido');
       // console.log(extraProducts);
       // let extraProductsAux = extraProducts.map((x) => x);
       const ep = [];
@@ -155,8 +157,8 @@ const getData = async () => {
         // console.log('Delivery Id - Deliveries Collection', deliveryId);
         // console.log('Delivery Id - Orders Collection', order.data().deliveryId);
         if (deliveryId === order.data().deliveryId) {
-          console.log(delivery.data().date.toDate());
-          console.log(order.data().date);
+          // console.log(delivery.data().date.toDate());
+          // console.log(order.data().date);
           deliveryDate = delivery.data().date.toDate();
           deliveryDateText = delivery.data().date.toDate().toLocaleDateString('pt-BR') 
         }
@@ -176,7 +178,7 @@ const getData = async () => {
       // });
       // throw 'erro';
     } else {
-      console.log('Delivery já existe.');
+      // console.log('Delivery já existe.');
       // console.log('Deliver before', deliveries[i]);
       deliveries[i].cestas += order.data().baseProducts;
       order.data().extraProducts.map((extraProductFireStore) => {
@@ -194,19 +196,17 @@ const getData = async () => {
     }
   });
 
-  // deliveries.map((delivery) => {
-  //   console.log(delivery);
-  // })
-
   deliveries.sort((a, b) => {
     return a.date - b.date;
   });
   deliveries.map((delivery) => {
     // console.log(delivery);
-    let lineToStore = '{\n"deliveryId":"' + delivery.deliveryId + '",\n"date":"' + delivery.date.toString().substring(0, 10) + '",\n "dateText":"' + delivery.dateText + '",\n"cestas":' + delivery.cestas + ',\n"extraProducts":[\n'
+    let lineToStore = '{\n"deliveryId":"' + delivery.deliveryId + '",\n"date":"' + delivery.date.toString().substring(0, 10) + '",\n "dateText":"' + delivery.dateText + '",\n"cestas":' + delivery.cestas + ',\n"extraProducts":[\n';
+
     delivery.extraProducts.map((extraProduct) => {
-      lineToStore = lineToStore + '{"name":"' + extraProduct.name + '","amount":' + extraProduct.amount + '},\n';
+      lineToStore = lineToStore + '{"name":"' + extraProduct.name.replaceAll('"', '') + '","amount":' + extraProduct.amount + '},\n';
     });
+
     lineToStore = lineToStore + ']\n },\n';
     fs.appendFile(fileToWrite, lineToStore + ' ', async function (err) {
       if (err) return console.log(err);

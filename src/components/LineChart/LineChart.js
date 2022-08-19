@@ -8,9 +8,7 @@ function LineChart({ chartData, options, width }) {
   // console.log('Line chart', chartData);
 
   return (
-    <div className='LineChart' style={{width:width}}>
       <Line className='ChartArea' data={chartData} options={options} />
-    </div>
   )
 }
 

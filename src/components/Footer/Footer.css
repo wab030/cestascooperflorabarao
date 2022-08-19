@@ -1,0 +1,22 @@
+.Footer {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.Icon {
+  border: 1px solid var(--green-dark);
+  padding: 3px;
+  margin: 5px;
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+}
+
+.Developer {
+  text-decoration: none;
+  font-size: 14px;
+  color: var(--green-dark);
+  margin-top: 10px;
+}

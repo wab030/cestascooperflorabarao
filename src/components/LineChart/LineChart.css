@@ -1,11 +1,8 @@
-.LineChart {
-  /* position: absolute; */
-  position: relative;
-  float: left;
+.ChartArea {
+  background-color: white;
+  border-radius: 5px;
+  margin: 10px;
+  min-width: 400px;
+  box-shadow: 0 2px 6px rgba(21, 120, 64, 0.3);
+  padding: 10px;
 }
-
-
-/* .ChartArea {
-  position: relative;
-  float: left;
-} */

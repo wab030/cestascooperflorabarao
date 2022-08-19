@@ -1,5 +1,5 @@
 export default {
-  primary: '#38C54C',
+  primary: '#2D6535',
   secondary: '#FC6111',
   tertiary: '#8898AA',
   headerTitleColor: '#2D6535',

@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { data } from '../../data/cooperflorabarao';
 import LineChart from '../LineChart/LineChart';
-import './ChartArea.css';
+import Charts from '../Charts/Charts';
+import './MainChart.css';
 
-const ChartsArea = () => {
-  
+const MainChart = () => {
+
   const [chartData, setChartData] = useState({
     labels: data.cooperflorabarao.deliveries.map((data) => data.dateText),
     datasets: [{
@@ -30,11 +31,11 @@ const ChartsArea = () => {
     },
   };
 
-  return(
-    <div class='ChartArea'>
-      <LineChart chartData={chartData} options={options} width={'100%'}/> 
+  return (
+    <div class='MainChart'>
+      <LineChart chartData={chartData} options={options} width={'100%'} />
     </div>
   )
 }
 
-export default ChartsArea;
+export default MainChart;

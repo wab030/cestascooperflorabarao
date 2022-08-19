@@ -1,0 +1,33 @@
+.MainPage {
+    background-color: #E8E8E8;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.Main {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    flex-wrap: wrap
+}
+
+.Class {
+    display: block;
+}
+
+.Block1 {
+    min-width: 400px;
+    max-width: 400px;
+}
+
+.Block2 {
+    flex: 1;
+    min-width: 400px;
+
+}
+
+.Charts {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+}
