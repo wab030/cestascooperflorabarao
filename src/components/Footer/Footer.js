@@ -13,6 +13,7 @@ const Footer = () => {
       <FiTwitter className='Icon' color={Colors.primary} /> */}
       {/* <AiOutlineMail className='Icon' color={Colors.primary} /> */}
       <a className='Developer' href="albordignon">Site Desenvolvido por A.L. Bordignon</a>
+      <p>Licensed under GNU GPLv3 | download the source here</p>
     </div>
   );
 }
