@@ -80,7 +80,7 @@ const Charts = () => {
               }
               return (
                 <div className='LineChartArea'>
-                  <LineChart chartData={chartData1} options={options} width={'45%'} />
+                  <LineChart chartData={chartData1} options={options} width={'100%'} />
                 </div>
               )
             }) : null

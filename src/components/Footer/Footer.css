@@ -1,22 +1,28 @@
 .Footer {
+  padding: 5px;
+  background-image: linear-gradient(195deg,var(--green-dark),var(--green-light));
   display: flex;
+  align-items: center;
   flex: 1;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .Icon {
-  border: 1px solid var(--green-dark);
+  border: 1px solid white;
   padding: 3px;
-  margin: 5px;
   width: 30px;
   height: 30px;
   border-radius: 5px;
 }
 
 .Developer {
+  margin: 0 10px;
   text-decoration: none;
   font-size: 14px;
-  color: var(--green-dark);
-  margin-top: 10px;
+  color: white;
+}
+
+.License {
+  color: white;
 }

@@ -14,3 +14,39 @@
   width: 50%;
 }
 
+.SideBar-Line {
+  list-style: none;
+  display: flex;
+  align-items: center; /* Center the elements vertically */
+  position: relative;
+  /* height: 60px; */
+}
+
+/* .SideBar-Line::before{
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  width: 5px;
+} */
+
+.SideBar-Line:hover{
+  background-color: #fff;
+  color: black;
+  border-radius: 5px;
+}
+
+
+.SideBar .Icon-Box{
+  height: 1.5rem;
+  width: 1.5rem;
+  margin-right: 1rem;
+}
+
+.Icon1 {
+  height: 1.5rem;
+  width: 1.5rem;
+  margin-right: 10px;
+  fill: rgb(63, 69, 74);
+}
+

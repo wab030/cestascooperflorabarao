@@ -19,6 +19,24 @@ const MainChart = () => {
 
   const options = {
     responsive: true,
+    scales: {
+      y: {
+        ticks: {
+          color: 'black',
+          font: {
+            size: 16,
+          }
+        }
+      },
+      x: {
+        ticks: {
+          color: 'black',
+          font: {
+            size: 16
+          }
+        }
+      }
+    },
     plugins: {
       legend: {
         position: 'top',
@@ -27,6 +45,9 @@ const MainChart = () => {
       title: {
         display: true,
         text: 'Número de Cestas Comercializadas',
+        font : {
+          size: 20
+        }
       },
     },
   };

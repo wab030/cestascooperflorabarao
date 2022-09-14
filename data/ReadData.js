@@ -92,7 +92,7 @@ const getData = async () => {
   fs.appendFile(fileToWrite, '"extraProducts":[\n', async function (err) {
     if (err) return console.log(err);
   });
-  let productsAux = await db.collection('products').get();
+  let productsAux = await db.collection('products').orderBy('name').get();
   productsAux.forEach((doc) => {
     // console.log(doc.data());
     let lineToStore = '"' + doc.data().name.replaceAll('"','') + '",';

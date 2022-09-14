@@ -8,7 +8,7 @@ function LineChart({ chartData, options, width }) {
   // console.log('Line chart', chartData);
 
   return (
-      <Line className='ChartArea' data={chartData} options={options} />
+      <Line className='LineChart' data={chartData} options={options} />
   )
 }
 

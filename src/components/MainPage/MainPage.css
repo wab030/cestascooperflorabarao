@@ -1,12 +1,12 @@
 .MainPage {
     background-color: #E8E8E8;
-    padding: 15px;
+    /* padding: 10px 3px 0px 0px; */
     border-radius: 5px;
+    min-width: 500px;
 }
 
 .Main {
     display: flex;
-    flex: 1;
     flex-direction: row;
     flex-wrap: wrap
 }
@@ -18,16 +18,27 @@
 .Block1 {
     min-width: 400px;
     max-width: 400px;
+    margin: 0 5px;
+    /* margin: 0 auto; */
+}
+
+@media (max-width: 800px) {
+    .Block1 {
+        margin: 0 auto;
+    }
 }
 
 .Block2 {
     flex: 1;
     min-width: 400px;
+    margin: 10px 0;
 
 }
 
 .Charts {
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex: 1;
     flex-wrap: wrap;
 }
