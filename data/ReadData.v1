@@ -43,7 +43,6 @@ initializeApp({
 const db = getFirestore();
 let deliveries = [];
 
-// Initialization of the output file.
 const initializeFile = () => {
   let lineToStore = 'export const data = {\n"cooperflorabarao": {\n ';
   fs.writeFile(fileToWrite, lineToStore + ' ', async function (err) {
@@ -51,23 +50,28 @@ const initializeFile = () => {
   });
 }
 
-let baseProductsPrice;
-
 const getData = async () => {
 
+  // let users = db.collection('users');
+  // let usersNumber = users.size;
+  // console.log('Users', usersNumber);
+  
+  
   let users;
   db.collection('users').get().then(snap => {
     users = snap.size // will return the collection size
-    console.log('Users', users);
+      console.log('Users', users);
 
   });
+
+
   let groupAux = await db.collection('groups').get();
   fs.appendFile(fileToWrite, '"group":{\n', async function (err) {
     if (err) return console.log(err);
   });
   groupAux.forEach((doc) => {
     // console.log(doc.data());
-    baseProductsPrice = doc.data().baseProductsPrice; 
+
     let lineToStore =
       '"address":"' + doc.data().address + '",\n' +
       '"name":"' + doc.data().name + '",\n' +
@@ -91,7 +95,7 @@ const getData = async () => {
   let productsAux = await db.collection('products').orderBy('name').get();
   productsAux.forEach((doc) => {
     // console.log(doc.data());
-    let lineToStore = '"' + doc.data().name.replaceAll('"', '') + '",';
+    let lineToStore = '"' + doc.data().name.replaceAll('"','') + '",';
     fs.appendFile(fileToWrite, lineToStore + ' ', async function (err) {
       if (err) return console.log(err);
       // console.log("Gravando produto ", lineToStore);
@@ -138,8 +142,7 @@ const getData = async () => {
         // const index = ep.findIndex(item => item.name === extraProductFireStore.productTitle);
         const a = {
           'name': extraProductFireStore.productTitle,
-          'amount': extraProductFireStore.quantity,
-          'price': extraProductFireStore.productPrice,
+          'amount': extraProductFireStore.quantity
         };
         ep.push(a);
         // ep[index].amount += extraProductFireStore.quantity;
@@ -157,7 +160,7 @@ const getData = async () => {
           // console.log(delivery.data().date.toDate());
           // console.log(order.data().date);
           deliveryDate = delivery.data().date.toDate();
-          deliveryDateText = delivery.data().date.toDate().toLocaleDateString('pt-BR')
+          deliveryDateText = delivery.data().date.toDate().toLocaleDateString('pt-BR') 
         }
       });
 
@@ -168,7 +171,6 @@ const getData = async () => {
         cestas: order.data().baseProducts,
         extraProducts: [...ep]
       }
-      // console.log(cesta);
       deliveries.push(cesta);
 
       // deliveries.map((delivery) => {
@@ -187,8 +189,7 @@ const getData = async () => {
         } else {
           deliveries[i].extraProducts.push({
             'name': extraProductFireStore.productTitle,
-            'amount': extraProductFireStore.quantity,
-            'price': extraProductFireStore.productPrice,
+            'amount': extraProductFireStore.quantity
           });
         }
       });
@@ -200,36 +201,17 @@ const getData = async () => {
   });
   deliveries.map((delivery) => {
     // console.log(delivery);
-    let totalAmountBaseProductSales = delivery.cestas * baseProductsPrice;
-    console.log(totalAmountBaseProductSales);
+    let lineToStore = '{\n"deliveryId":"' + delivery.deliveryId + '",\n"date":"' + delivery.date.toString().substring(0, 10) + '",\n "dateText":"' + delivery.dateText + '",\n"cestas":' + delivery.cestas + ',\n"extraProducts":[\n';
 
-    let lineToStore = '{\n"deliveryId":"' + delivery.deliveryId + '",\n"date":"' + delivery.date.toString().substring(0, 10) + '",\n "dateText":"' + delivery.dateText + '",\n"cestas":' + delivery.cestas + ',\n"totalAmountBaseProductsSale":'+totalAmountBaseProductSales+',\n"extraProducts":[\n';
-
-    let totalAmountExtraProductsSales = 0;
     delivery.extraProducts.map((extraProduct) => {
-      // console.log(extraProduct);
-      totalAmountExtraProductsSales = totalAmountExtraProductsSales + extraProduct.amount*extraProduct.price;
-      lineToStore = lineToStore +
-        '{"name":"' + extraProduct.name.replaceAll('"', '') +
-        '","amount":' + extraProduct.amount +
-        ',"price":' + extraProduct.price +
-        '},\n';
+      lineToStore = lineToStore + '{"name":"' + extraProduct.name.replaceAll('"', '') + '","amount":' + extraProduct.amount + '},\n';
     });
-    console.log('Total de vendas Produtos Extras:',totalAmountExtraProductsSales);
 
-    // let lineToStoreAux = '\n"totalAmountExtraProductsSales":' + totalAmountBaseProductSales + ',\n';
-    // fs.appendFile(fileToWrite, lineToStoreAux + ' ', async function (err) {
-    //   if (err) return console.log(err);
-    //   // console.log("Gravando cesta ", lineToStore);
-    // });
-
-    lineToStore = lineToStore + '],\n"totalAmountExtraProductsSales":'+totalAmountExtraProductsSales +',\n},\n';
-    // lineToStore = `${lineStore}']\n'"totalAmountExtraProductsSales":${totalAmountExtraProductsSales}\n},\n`;
+    lineToStore = lineToStore + ']\n },\n';
     fs.appendFile(fileToWrite, lineToStore + ' ', async function (err) {
       if (err) return console.log(err);
       // console.log("Gravando cesta ", lineToStore);
     });
-
   });
   // console.log(deliveries);
   let lineToStore = ']\n}\n}';
