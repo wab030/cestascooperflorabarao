@@ -26,7 +26,7 @@ const fs = require('fs');
 const fileToWrite = 'cooperflorabarao.js';
 
 // Prod DB
-const serviceAccount = require('../../cestascooperflorabarao-firebase-adminsdk-kg42n-264249460c.json');
+const serviceAccount = require('../../cestascooperflorabarao-firebase-adminsdk-kg42n-083eab8467.json');
 
 // Dev DB
 // const serviceAccount = require('../../cestascooperflorabarao-dev-firebase-adminsdk-hopm6-3604f3476c.json');
@@ -90,7 +90,8 @@ const getData = async () => {
   });
   let productsAux = await db.collection('products').orderBy('name').get();
   productsAux.forEach((doc) => {
-    // console.log(doc.data());
+    // console.log(doc.data().name);
+    let productName = doc.data().name;
     let lineToStore = '"' + doc.data().name.replaceAll('"', '') + '",';
     fs.appendFile(fileToWrite, lineToStore + ' ', async function (err) {
       if (err) return console.log(err);

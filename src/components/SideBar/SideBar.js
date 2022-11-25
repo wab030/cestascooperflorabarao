@@ -1,7 +1,8 @@
 import './SideBar.css';
 import { data } from '../../data/cooperflorabarao';
 import logoCooperflora from '../../assets/logosemfundo.png'
-import { ReactComponent as LocationIcon } from '../../assets/icons/location-pin.svg';
+// import { ReactComponent as LocationIcon } from '../../assets/icons/location-pin.svg';
+import LocationIcon from '../../assets/icons/location.png'
 import { ReactComponent as MoneyIcon } from '../../assets/icons/credit.svg';
 import { ReactComponent as CalendarIcon } from '../../assets/icons/calendar.svg';
 import { ReactComponent as TimeIcon } from '../../assets/icons/back-in-time.svg';
@@ -17,7 +18,9 @@ const SideBar = () => {
       </div>
       <ul>
         <li className='SideBar-Line text'>
-          <span className='Icon-Box'><LocationIcon className='Icon1' /></span>
+          {/* <span className='Icon-Box'><LocationIcon className='Icon1' /></span> */}
+          <span className='Icon-Box'><img src={LocationIcon} className='Icon1' alt='Icone de localização' /></span>
+
           Endereço: {data.cooperflorabarao.group.address}
         </li>
         <li className='SideBar-Line text'>
