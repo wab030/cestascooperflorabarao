@@ -1,15 +1,15 @@
 import { BrowserRouter } from 'react-router-dom';
+import ReactGA from 'react-ga4';
 import Routes from './Routes';
-import MainPage from './components/MainPage/MainPage';
+
 import './App.css';
-// import { data } from './data/cooperflorabarao-mock';
 
 function App() {
+  ReactGA.initialize('G-5FJ3RXPCKB');
 
   return (
-    <div className="App">
+    <div className='App'>
       <BrowserRouter>
-        <MainPage />
         <Routes />
       </BrowserRouter>
     </div>

@@ -20,8 +20,8 @@ cestas : [
 ]
 */
 
-const { initializeApp, cert } = require('firebase-admin/app');
-const { getFirestore } = require('firebase-admin/firestore');
+const { initializeApp, cert } = require('firebase-admin/lib/app');
+const { getFirestore } = require('firebase-admin/lib/firestore');
 const fs = require('fs');
 const fileToWrite = 'cooperflorabarao.js';
 
@@ -56,7 +56,7 @@ let baseProductsPrice;
 const getData = async () => {
 
   let users;
-  db.collection('users').get().then(snap => {
+  await db.collection('users').get().then(snap => {
     users = snap.size // will return the collection size
     console.log('Users', users);
 
@@ -65,9 +65,12 @@ const getData = async () => {
   fs.appendFile(fileToWrite, '"group":{\n', async function (err) {
     if (err) return console.log(err);
   });
+  const currentDate = new Date();
   groupAux.forEach((doc) => {
     // console.log(doc.data());
-    baseProductsPrice = doc.data().baseProductsPrice; 
+    console.log('Users', users);
+   
+    baseProductsPrice = doc.data().baseProductsPrice;
     let lineToStore =
       '"address":"' + doc.data().address + '",\n' +
       '"name":"' + doc.data().name + '",\n' +
@@ -77,7 +80,8 @@ const getData = async () => {
       '"deliveryFrequencyText":"' + doc.data().deliveryFrequencyText + '",\n' +
       '"baseProductsPrice":' + doc.data().baseProductsPrice + ',\n' +
       '"deliveryFee":' + doc.data().deliveryFee + ',\n' +
-      '"consumers":' + users + '\n' +
+      '"consumers":' + users + ',\n' +
+      '"date":"' + currentDate.toString() + '",\n' +
       '},\n';
     fs.appendFile(fileToWrite, lineToStore + ' ', async function (err) {
       if (err) return console.log(err);
@@ -92,7 +96,10 @@ const getData = async () => {
   productsAux.forEach((doc) => {
     // console.log(doc.data().name);
     let productName = doc.data().name;
-    let lineToStore = '"' + doc.data().name.replaceAll('"', '') + '",';
+    // console.log(typeOf(productName));
+    //let lineToStore = '"' + productName.replaceAll('"', '') + '",';
+    // let lineToStore = '"' + doc.data().name + '",';
+    let lineToStore = '"' + productName.replace(/"/g, '') + '",';
     fs.appendFile(fileToWrite, lineToStore + ' ', async function (err) {
       if (err) return console.log(err);
       // console.log("Gravando produto ", lineToStore);
@@ -202,21 +209,26 @@ const getData = async () => {
   deliveries.map((delivery) => {
     // console.log(delivery);
     let totalAmountBaseProductSales = delivery.cestas * baseProductsPrice;
-    console.log(totalAmountBaseProductSales);
+    // console.log(totalAmountBaseProductSales);
 
-    let lineToStore = '{\n"deliveryId":"' + delivery.deliveryId + '",\n"date":"' + delivery.date.toString().substring(0, 10) + '",\n "dateText":"' + delivery.dateText + '",\n"cestas":' + delivery.cestas + ',\n"totalAmountBaseProductsSale":'+totalAmountBaseProductSales+',\n"extraProducts":[\n';
+    let lineToStore = '{\n"deliveryId":"' + delivery.deliveryId + '",\n"date":"' + delivery.date.toString().substring(0, 10) + '",\n "dateText":"' + delivery.dateText + '",\n"cestas":' + delivery.cestas + ',\n"totalAmountBaseProductsSale":' + totalAmountBaseProductSales + ',\n"extraProducts":[\n';
 
     let totalAmountExtraProductsSales = 0;
     delivery.extraProducts.map((extraProduct) => {
       // console.log(extraProduct);
-      totalAmountExtraProductsSales = totalAmountExtraProductsSales + extraProduct.amount*extraProduct.price;
+      totalAmountExtraProductsSales = totalAmountExtraProductsSales + extraProduct.amount * extraProduct.price;
+      // lineToStore = lineToStore +
+      //   '{"name":"' + extraProduct.name.replaceAll('"', '') +
+      //   '","amount":' + extraProduct.amount +
+      //   ',"price":' + extraProduct.price +
+      //   '},\n';
       lineToStore = lineToStore +
-        '{"name":"' + extraProduct.name.replaceAll('"', '') +
+        '{"name":"' + extraProduct.name.replace(/"/g, '') +
         '","amount":' + extraProduct.amount +
         ',"price":' + extraProduct.price +
         '},\n';
     });
-    console.log('Total de vendas Produtos Extras:',totalAmountExtraProductsSales);
+    console.log('Total de vendas Produtos Extras:', totalAmountExtraProductsSales);
 
     // let lineToStoreAux = '\n"totalAmountExtraProductsSales":' + totalAmountBaseProductSales + ',\n';
     // fs.appendFile(fileToWrite, lineToStoreAux + ' ', async function (err) {
@@ -224,7 +236,7 @@ const getData = async () => {
     //   // console.log("Gravando cesta ", lineToStore);
     // });
 
-    lineToStore = lineToStore + '],\n"totalAmountExtraProductsSales":'+totalAmountExtraProductsSales +',\n},\n';
+    lineToStore = lineToStore + '],\n"totalAmountExtraProductsSales":' + totalAmountExtraProductsSales + ',\n},\n';
     // lineToStore = `${lineStore}']\n'"totalAmountExtraProductsSales":${totalAmountExtraProductsSales}\n},\n`;
     fs.appendFile(fileToWrite, lineToStore + ' ', async function (err) {
       if (err) return console.log(err);

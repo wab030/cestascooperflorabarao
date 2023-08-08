@@ -14,30 +14,30 @@ const Charts = () => {
     }, []);
 
 
-    const [chartData, setChartData] = useState({
-        labels: data.cooperflorabarao.deliveries.map((data) => data.dateText),
-        datasets: [{
-            label: "Cestas Comercializadas",
-            data: data.cooperflorabarao.deliveries.map((data) => data.cestas),
-            backgroundColor: ['red'],
-            borderColor: '#FA6210',
-            borderWidth: 2
-        }]
-    });
+    // const [chartData, setChartData] = useState({
+    //     labels: data.cooperflorabarao.deliveries.map((data) => data.dateText),
+    //     datasets: [{
+    //         label: "Cestas Comercializadas",
+    //         data: data.cooperflorabarao.deliveries.map((data) => data.cestas),
+    //         backgroundColor: ['red'],
+    //         borderColor: '#FA6210',
+    //         borderWidth: 2
+    //     }]
+    // });
 
-    const options = {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'top',
-                display: false
-            },
-            title: {
-                display: true,
-                text: 'Número de Cestas Comercializadas',
-            },
-        },
-    };
+    // const options = {
+    //     responsive: true,
+    //     plugins: {
+    //         legend: {
+    //             position: 'top',
+    //             display: false
+    //         },
+    //         title: {
+    //             display: true,
+    //             text: 'Número de Cestas Comercializadas',
+    //         },
+    //     },
+    // };
 
     return (
         <div class='Charts'>
