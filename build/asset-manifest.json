@@ -1,20 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.8fb507db.css",
-    "main.js": "/static/js/main.a330f8f2.js",
-    "static/js/787.efbdb78d.chunk.js": "/static/js/787.efbdb78d.chunk.js",
+    "main.css": "/static/css/main.79524c12.css",
+    "main.js": "/static/js/main.a0022fea.js",
+    "static/js/787.deff03f2.chunk.js": "/static/js/787.deff03f2.chunk.js",
     "static/media/logosemfundo.png": "/static/media/logosemfundo.4539f601792566852271.png",
     "index.html": "/index.html",
-    "static/media/credit.svg": "/static/media/credit.4171e583b62ba1b9ca2a72865063cc75.svg",
-    "static/media/back-in-time.svg": "/static/media/back-in-time.3d197b03d054007c4309b7ad0377f79b.svg",
-    "static/media/calendar.svg": "/static/media/calendar.ad78a5b7794eafe869a9a52902261b54.svg",
-    "static/media/list-numbered.svg": "/static/media/list-numbered.a9ee58fc4a36bbbbb3228aad28327df1.svg",
-    "main.8fb507db.css.map": "/static/css/main.8fb507db.css.map",
-    "main.a330f8f2.js.map": "/static/js/main.a330f8f2.js.map",
-    "787.efbdb78d.chunk.js.map": "/static/js/787.efbdb78d.chunk.js.map"
+    "main.79524c12.css.map": "/static/css/main.79524c12.css.map",
+    "main.a0022fea.js.map": "/static/js/main.a0022fea.js.map",
+    "787.deff03f2.chunk.js.map": "/static/js/787.deff03f2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8fb507db.css",
-    "static/js/main.a330f8f2.js"
+    "static/css/main.79524c12.css",
+    "static/js/main.a0022fea.js"
   ]
 }

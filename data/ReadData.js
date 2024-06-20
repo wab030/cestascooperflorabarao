@@ -2,7 +2,7 @@
 
 Essa script lê o banco de dados Cestas Cooperflora e gera um arquivo json para ser consumido pela Web App e mostrar os dados na tela. 
 
-Execução: node ReadData.js
+Execução: nodejs ReadData.js
 
 cestas : [
   date: data,
