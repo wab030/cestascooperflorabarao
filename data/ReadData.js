@@ -1,259 +1,136 @@
-/*
+// Esse script lê o banco de dados Cestas Cooperflora e gera um arquivo JS com os dados em formato exportado
+// Execução: node ReadData.js
 
-Essa script lê o banco de dados Cestas Cooperflora e gera um arquivo json para ser consumido pela Web App e mostrar os dados na tela. 
-
-Execução: nodejs ReadData.js
-
-cestas : [
-  date: data,
-  cestas: xxx (quantidade),
-  extraProducts:[
-    {
-      name: xxxx,
-      amount: xxx
-    }
-    {
-      name: xxxx,
-      amount: xxx
-    }
-  ]  
-]
-*/
-
-const { initializeApp, cert } = require('firebase-admin/lib/app');
-const { getFirestore } = require('firebase-admin/lib/firestore');
+const { initializeApp, cert } = require('firebase-admin/app');
+const { getFirestore } = require('firebase-admin/firestore');
 const fs = require('fs');
 const fileToWrite = 'cooperflorabarao.js';
 
-// Prod DB
+// Carrega credenciais do Firebase (banco de produção)
 const serviceAccount = require('../../cestascooperflorabarao-firebase-adminsdk-kg42n-083eab8467.json');
 
-// Dev DB
-// const serviceAccount = require('../../cestascooperflorabarao-dev-firebase-adminsdk-hopm6-3604f3476c.json');
-
-// const serviceAccount = require('../../cestascooperflorabarao-dev-firebase-adminsdk-hopm6-8a8fcf03f3.json');
-// const databaseURL = 'https://cestascooperflorabarao-dev-default-rtdb.asia-southeast1.firebasedatabase.app';
-
-console.log('Iniciando a leitura dos dados do app Cestas Cooperflora Barão');
-
-initializeApp({
-  credential: cert(serviceAccount)
-});
-
+// Inicializa o app do Firebase
+initializeApp({ credential: cert(serviceAccount) });
 const db = getFirestore();
-let deliveries = [];
-
-// Initialization of the output file.
-const initializeFile = () => {
-  let lineToStore = 'export const data = {\n"cooperflorabarao": {\n ';
-  fs.writeFile(fileToWrite, lineToStore + ' ', async function (err) {
-    if (err) return console.log(err);
-  });
-}
 
 let baseProductsPrice;
+const dataToExport = {
+  cooperflorabarao: {
+    group: {},
+    extraProducts: [],
+    deliveries: []
+  }
+};
 
 const getData = async () => {
+  console.log('Iniciando a leitura dos dados do app Cestas Cooperflora Barão');
 
-  let users;
-  await db.collection('users').get().then(snap => {
-    users = snap.size // will return the collection size
-    console.log('Users', users);
+  // Conta usuários cadastrados
+  const usersSnap = await db.collection('users').get();
+  const usersCount = usersSnap.size;
+  console.log('Total de consumidores cadastrados:', usersCount);
 
-  });
-  let groupAux = await db.collection('groups').get();
-  fs.appendFile(fileToWrite, '"group":{\n', async function (err) {
-    if (err) return console.log(err);
-  });
+  // Coleta informações do grupo
+  const groupSnap = await db.collection('groups').get();
   const currentDate = new Date();
-  groupAux.forEach((doc) => {
-    // console.log(doc.data());
-    console.log('Users', users);
-   
-    baseProductsPrice = doc.data().baseProductsPrice;
-    let lineToStore =
-      '"address":"' + doc.data().address + '",\n' +
-      '"name":"' + doc.data().name + '",\n' +
-      '"deliveryWeekDay":"' + doc.data().deliveryWeekDay + '",\n' +
-      '"notice":"' + doc.data().notice + '",' +
-      '"deliveryFrequencyInDays":' + doc.data().deliveryFrequencyInDays + ',\n' +
-      '"deliveryFrequencyText":"' + doc.data().deliveryFrequencyText + '",\n' +
-      '"baseProductsPrice":' + doc.data().baseProductsPrice + ',\n' +
-      '"deliveryFee":' + doc.data().deliveryFee + ',\n' +
-      '"consumers":' + users + ',\n' +
-      '"date":"' + currentDate.toString() + '",\n' +
-      '},\n';
-    fs.appendFile(fileToWrite, lineToStore + ' ', async function (err) {
-      if (err) return console.log(err);
-      // console.log("Gravando grupo ", lineToStore);
-    });
+
+  groupSnap.forEach(doc => {
+    const d = doc.data();
+    baseProductsPrice = d.baseProductsPrice;
+
+    dataToExport.cooperflorabarao.group = {
+      address: d.address,
+      name: d.name,
+      deliveryWeekDay: d.deliveryWeekDay,
+      notice: d.notice,
+      deliveryFrequencyInDays: d.deliveryFrequencyInDays,
+      deliveryFrequencyText: d.deliveryFrequencyText,
+      baseProductsPrice: d.baseProductsPrice,
+      deliveryFee: d.deliveryFee,
+      consumers: usersCount,
+      date: currentDate.toString()
+    };
+    console.log('Dados do grupo obtidos com sucesso.');
   });
 
-  fs.appendFile(fileToWrite, '"extraProducts":[\n', async function (err) {
-    if (err) return console.log(err);
+  // Lista de produtos extras disponíveis
+  const productsSnap = await db.collection('products').orderBy('name').get();
+  productsSnap.forEach(doc => {
+    const nome = doc.data().name.replace(/"/g, '');
+    dataToExport.cooperflorabarao.extraProducts.push(nome);
   });
-  let productsAux = await db.collection('products').orderBy('name').get();
-  productsAux.forEach((doc) => {
-    // console.log(doc.data().name);
-    let productName = doc.data().name;
-    // console.log(typeOf(productName));
-    //let lineToStore = '"' + productName.replaceAll('"', '') + '",';
-    // let lineToStore = '"' + doc.data().name + '",';
-    let lineToStore = '"' + productName.replace(/"/g, '') + '",';
-    fs.appendFile(fileToWrite, lineToStore + ' ', async function (err) {
-      if (err) return console.log(err);
-      // console.log("Gravando produto ", lineToStore);
-    });
-  });
-  // console.log('Extras Products', extraProducts);
+  console.log('Produtos extras carregados:', dataToExport.cooperflorabarao.extraProducts.length);
 
-  let lineStore = '],\n"deliveries":[\n ';
-  fs.appendFile(fileToWrite, lineStore + ' ', async function (err) {
-    if (err) return console.log(err);
-  });
+  // Dados das entregas e pedidos
+  const deliveriesSnap = await db.collection('groups').doc('vhvp5xf4PNESoy0qR2Yx').collection('deliveries').get();
+  const ordersSnap = await db.collection('orders').get();
 
-  let deliveriesAux = await db.collection('groups').doc('vhvp5xf4PNESoy0qR2Yx').collection('deliveries').get();
+  const deliveries = [];
 
-  let ordersAux = await db.collection('orders').get();
-  // let ordersAux = await db.collection('orders').where('date', '>', '2022-05-21T23:43:06.816Z').get();
-  ordersAux.forEach((order) => {
-    // console.log(order.data());
-    // deliveries.map((delivery) => {
-    //   console.log('Delivery before', delivery);
-    // });
-    let deliveryExists = false;
-    let i = 0;
-    let date;
-    date = new Date(order.data().date.toString().substring(0, 10));
+  for (const order of ordersSnap.docs) {
+    const orderData = order.data();
+    const deliveryId = orderData.deliveryId;
 
-    while (i < deliveries.length) {
-      if (order.data().deliveryId === deliveries[i].deliveryId) {
-        deliveryExists = true;
-        break;
-      }
-      i++;
-    }
-    if (!deliveryExists) {
-      // console.log('Novo pedido');
-      // console.log(extraProducts);
-      // let extraProductsAux = extraProducts.map((x) => x);
-      const ep = [];
-      // for (let i = 0; i < extraProducts.length; i++) {
-      //   ep[i] = extraProducts[i];
-      // }
-      // let dateAux = new Date(date);
-      order.data().extraProducts.map((extraProductFireStore) => {
-        // const index = ep.findIndex(item => item.name === extraProductFireStore.productTitle);
-        const a = {
-          'name': extraProductFireStore.productTitle,
-          'amount': extraProductFireStore.quantity,
-          'price': extraProductFireStore.productPrice,
-        };
-        ep.push(a);
-        // ep[index].amount += extraProductFireStore.quantity;
-        // console.log(extraProductFireStore);
-      });
-      // console.log(deliveriesAux.data());
-      let deliveryDate = null;
-      let deliveryDateText = null;
+    let existing = deliveries.find(d => d.deliveryId === deliveryId);
+    if (!existing) {
+      const deliveryDoc = deliveriesSnap.docs.find(d => d.id === deliveryId);
+      let deliveryDate = deliveryDoc?.data().date.toDate();
+      let deliveryDateText = deliveryDate?.toLocaleDateString('pt-BR') || null;
 
-      deliveriesAux.forEach((delivery) => {
-        let deliveryId = delivery.id;
-        // console.log('Delivery Id - Deliveries Collection', deliveryId);
-        // console.log('Delivery Id - Orders Collection', order.data().deliveryId);
-        if (deliveryId === order.data().deliveryId) {
-          // console.log(delivery.data().date.toDate());
-          // console.log(order.data().date);
-          deliveryDate = delivery.data().date.toDate();
-          deliveryDateText = delivery.data().date.toDate().toLocaleDateString('pt-BR')
-        }
-      });
+      const extraProducts = orderData.extraProducts.map(p => ({
+        name: p.productTitle,
+        amount: p.quantity,
+        price: p.productPrice
+      }));
 
-      const cesta = {
-        deliveryId: order.data().deliveryId,
-        date: new Date(deliveryDate),
+      deliveries.push({
+        deliveryId,
+        date: deliveryDate,
         dateText: deliveryDateText,
-        cestas: order.data().baseProducts,
-        extraProducts: [...ep]
-      }
-      // console.log(cesta);
-      deliveries.push(cesta);
-
-      // deliveries.map((delivery) => {
-      //   console.log(delivery);
-      // });
-      // throw 'erro';
+        cestas: orderData.baseProducts,
+        extraProducts
+      });
     } else {
-      // console.log('Delivery já existe.');
-      // console.log('Deliver before', deliveries[i]);
-      deliveries[i].cestas += order.data().baseProducts;
-      order.data().extraProducts.map((extraProductFireStore) => {
-        const index = deliveries[i].extraProducts.findIndex(item => item.name === extraProductFireStore.productTitle);
-        // console.log('I', index);
-        if (index >= 0) {
-          deliveries[i].extraProducts[index].amount += extraProductFireStore.quantity;
+      // Soma os valores caso já exista uma entrega com mesmo ID
+      existing.cestas += orderData.baseProducts;
+      orderData.extraProducts.forEach(p => {
+        const found = existing.extraProducts.find(e => e.name === p.productTitle);
+        if (found) {
+          found.amount += p.quantity;
         } else {
-          deliveries[i].extraProducts.push({
-            'name': extraProductFireStore.productTitle,
-            'amount': extraProductFireStore.quantity,
-            'price': extraProductFireStore.productPrice,
+          existing.extraProducts.push({
+            name: p.productTitle,
+            amount: p.quantity,
+            price: p.productPrice
           });
         }
       });
     }
-  });
+  }
 
-  deliveries.sort((a, b) => {
-    return a.date - b.date;
-  });
-  deliveries.map((delivery) => {
-    // console.log(delivery);
-    let totalAmountBaseProductSales = delivery.cestas * baseProductsPrice;
-    // console.log(totalAmountBaseProductSales);
+  // Ordena as entregas por data
+  deliveries.sort((a, b) => a.date - b.date);
 
-    let lineToStore = '{\n"deliveryId":"' + delivery.deliveryId + '",\n"date":"' + delivery.date.toString().substring(0, 10) + '",\n "dateText":"' + delivery.dateText + '",\n"cestas":' + delivery.cestas + ',\n"totalAmountBaseProductsSale":' + totalAmountBaseProductSales + ',\n"extraProducts":[\n';
+  deliveries.forEach(delivery => {
+    const totalAmountBaseProductsSale = delivery.cestas * baseProductsPrice;
+    const totalAmountExtraProductsSales = delivery.extraProducts.reduce((sum, p) => sum + p.amount * p.price, 0);
 
-    let totalAmountExtraProductsSales = 0;
-    delivery.extraProducts.map((extraProduct) => {
-      // console.log(extraProduct);
-      totalAmountExtraProductsSales = totalAmountExtraProductsSales + extraProduct.amount * extraProduct.price;
-      // lineToStore = lineToStore +
-      //   '{"name":"' + extraProduct.name.replaceAll('"', '') +
-      //   '","amount":' + extraProduct.amount +
-      //   ',"price":' + extraProduct.price +
-      //   '},\n';
-      lineToStore = lineToStore +
-        '{"name":"' + extraProduct.name.replace(/"/g, '') +
-        '","amount":' + extraProduct.amount +
-        ',"price":' + extraProduct.price +
-        '},\n';
+    console.log(`Entrega ${delivery.deliveryId} em ${delivery.dateText}: ${delivery.cestas} cestas, R$ ${totalAmountExtraProductsSales.toFixed(2)} em produtos extras.`);
+
+    dataToExport.cooperflorabarao.deliveries.push({
+      deliveryId: delivery.deliveryId,
+      date: delivery.date.toISOString().substring(0, 10),
+      dateText: delivery.dateText,
+      cestas: delivery.cestas,
+      totalAmountBaseProductsSale,
+      extraProducts: delivery.extraProducts,
+      totalAmountExtraProductsSales
     });
-    console.log('Total de vendas Produtos Extras:', totalAmountExtraProductsSales);
-
-    // let lineToStoreAux = '\n"totalAmountExtraProductsSales":' + totalAmountBaseProductSales + ',\n';
-    // fs.appendFile(fileToWrite, lineToStoreAux + ' ', async function (err) {
-    //   if (err) return console.log(err);
-    //   // console.log("Gravando cesta ", lineToStore);
-    // });
-
-    lineToStore = lineToStore + '],\n"totalAmountExtraProductsSales":' + totalAmountExtraProductsSales + ',\n},\n';
-    // lineToStore = `${lineStore}']\n'"totalAmountExtraProductsSales":${totalAmountExtraProductsSales}\n},\n`;
-    fs.appendFile(fileToWrite, lineToStore + ' ', async function (err) {
-      if (err) return console.log(err);
-      // console.log("Gravando cesta ", lineToStore);
-    });
-
-  });
-  // console.log(deliveries);
-  let lineToStore = ']\n}\n}';
-  fs.appendFile(fileToWrite, lineToStore + ' ', async function (err) {
-    if (err) return console.log(err);
   });
 
-}
+  // Salva o arquivo JS final com export
+  fs.writeFileSync(fileToWrite, 'export const data = ' + JSON.stringify(dataToExport, null, 2));
+  console.log('Arquivo salvo com sucesso em', fileToWrite);
+};
 
-initializeFile();
 getData();
-
-
-
