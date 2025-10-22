@@ -9,8 +9,8 @@ export const data = {
       "deliveryFrequencyText": "Quinzenalmente às quartas-feiras",
       "baseProductsPrice": 45,
       "deliveryFee": 6,
-      "consumers": 193,
-      "date": "Fri Jul 18 2025 14:57:38 GMT-0300 (Brasilia Standard Time)"
+      "consumers": 198,
+      "date": "Wed Oct 22 2025 10:50:13 GMT-0300 (Brasilia Standard Time)"
     },
     "extraProducts": [
       " CESTA PEQUENA",
@@ -14681,6 +14681,871 @@ export const data = {
           }
         ],
         "totalAmountExtraProductsSales": 1116
+      },
+      {
+        "deliveryId": "Zphwrk4pjGoCWyk6r7Cf",
+        "date": "2025-08-07",
+        "dateText": "06/08/2025",
+        "cestas": 11,
+        "totalAmountBaseProductsSale": 495,
+        "extraProducts": [
+          {
+            "name": "Almeirão",
+            "amount": 1,
+            "price": 6
+          },
+          {
+            "name": "Arroz integral 1kg",
+            "amount": 2,
+            "price": 20
+          },
+          {
+            "name": "Couve",
+            "amount": 6,
+            "price": 7
+          },
+          {
+            "name": "Espinafre",
+            "amount": 6,
+            "price": 7
+          },
+          {
+            "name": "Feijão carioca 1Kg",
+            "amount": 2,
+            "price": 15
+          },
+          {
+            "name": "Feijão preto 1 kg",
+            "amount": 1,
+            "price": 15
+          },
+          {
+            "name": "Mandioca sem casca",
+            "amount": 5,
+            "price": 9
+          },
+          {
+            "name": "Ovos (dúzia)",
+            "amount": 13,
+            "price": 18
+          },
+          {
+            "name": "Rúcula",
+            "amount": 4,
+            "price": 7
+          },
+          {
+            "name": "Tomatinho",
+            "amount": 9,
+            "price": 7
+          },
+          {
+            "name": "Berinjela",
+            "amount": 3,
+            "price": 7
+          },
+          {
+            "name": "Farinha de mandioca Lió 500g",
+            "amount": 1,
+            "price": 8
+          },
+          {
+            "name": "Limão ",
+            "amount": 5,
+            "price": 7
+          },
+          {
+            "name": "Queijo Meia Cura G",
+            "amount": 2,
+            "price": 45
+          },
+          {
+            "name": " CESTA PEQUENA",
+            "amount": 7,
+            "price": 33
+          },
+          {
+            "name": "Café Cecília (moído)",
+            "amount": 2,
+            "price": 45
+          },
+          {
+            "name": "Suco de manga",
+            "amount": 2,
+            "price": 22
+          },
+          {
+            "name": "Pão de mandioca",
+            "amount": 3,
+            "price": 15
+          },
+          {
+            "name": "Arroz Cateto integral 1 kg",
+            "amount": 1,
+            "price": 22
+          },
+          {
+            "name": "Cenoura",
+            "amount": 1,
+            "price": 7
+          },
+          {
+            "name": "Nabo",
+            "amount": 1,
+            "price": 7
+          },
+          {
+            "name": "Suco de goiaba 1L",
+            "amount": 2,
+            "price": 22
+          },
+          {
+            "name": "Suco de maçã 1L",
+            "amount": 1,
+            "price": 22
+          },
+          {
+            "name": "Cachaça cubana",
+            "amount": 1,
+            "price": 50
+          },
+          {
+            "name": "Arroz branco 1kg",
+            "amount": 1,
+            "price": 20
+          },
+          {
+            "name": "Banana 1 kg",
+            "amount": 1,
+            "price": 7
+          },
+          {
+            "name": "Capim santo",
+            "amount": 1,
+            "price": 6
+          },
+          {
+            "name": "Tempero caseiro coentro",
+            "amount": 1,
+            "price": 15
+          },
+          {
+            "name": "Mandioca (com casca)",
+            "amount": 1,
+            "price": 7
+          },
+          {
+            "name": "Beterraba",
+            "amount": 2,
+            "price": 7
+          },
+          {
+            "name": "Café Cecília (grãos)",
+            "amount": 2,
+            "price": 45
+          },
+          {
+            "name": "Nózinho de Coco",
+            "amount": 1,
+            "price": 15
+          },
+          {
+            "name": "Queijo Fresco P",
+            "amount": 1,
+            "price": 25
+          },
+          {
+            "name": "Suco de uva 1,5 litro",
+            "amount": 1,
+            "price": 25
+          }
+        ],
+        "totalAmountExtraProductsSales": 1485
+      },
+      {
+        "deliveryId": "5onv2DZwrlEup2khDIoA",
+        "date": "2025-08-21",
+        "dateText": "20/08/2025",
+        "cestas": 5,
+        "totalAmountBaseProductsSale": 225,
+        "extraProducts": [
+          {
+            "name": "Feijão carioca 1Kg",
+            "amount": 2,
+            "price": 15
+          },
+          {
+            "name": "Feijão preto 1 kg",
+            "amount": 4,
+            "price": 15
+          },
+          {
+            "name": "Pimenta do Reino em grãos ",
+            "amount": 2,
+            "price": 7
+          },
+          {
+            "name": "Tomatinho",
+            "amount": 15,
+            "price": 7
+          },
+          {
+            "name": "Ovos (dúzia)",
+            "amount": 13,
+            "price": 18
+          },
+          {
+            "name": " CESTA PEQUENA",
+            "amount": 14,
+            "price": 33
+          },
+          {
+            "name": "Limão ",
+            "amount": 1,
+            "price": 7
+          },
+          {
+            "name": "Banana 1 kg",
+            "amount": 7,
+            "price": 7
+          },
+          {
+            "name": "Mandioca (com casca)",
+            "amount": 1,
+            "price": 7
+          },
+          {
+            "name": "Alho-poró",
+            "amount": 1,
+            "price": 7
+          },
+          {
+            "name": "Arroz branco 1kg",
+            "amount": 3,
+            "price": 20
+          },
+          {
+            "name": "Farinha de mandioca Lió 500g",
+            "amount": 2,
+            "price": 8
+          },
+          {
+            "name": "Nabo",
+            "amount": 2,
+            "price": 7
+          },
+          {
+            "name": "Bolo de cenoura",
+            "amount": 1,
+            "price": 25
+          },
+          {
+            "name": "Pão de mandioca",
+            "amount": 3,
+            "price": 15
+          },
+          {
+            "name": "Nózinho de Coco",
+            "amount": 3,
+            "price": 15
+          },
+          {
+            "name": "Berinjela",
+            "amount": 2,
+            "price": 7
+          },
+          {
+            "name": "Cheiro Verde",
+            "amount": 3,
+            "price": 7
+          },
+          {
+            "name": "Pimenta do reino moída",
+            "amount": 1,
+            "price": 7
+          },
+          {
+            "name": "Repolho ",
+            "amount": 1,
+            "price": 7
+          },
+          {
+            "name": "Café Cecília (moído)",
+            "amount": 1,
+            "price": 45
+          },
+          {
+            "name": "Chicória",
+            "amount": 2,
+            "price": 6
+          },
+          {
+            "name": "Alface",
+            "amount": 1,
+            "price": 6
+          },
+          {
+            "name": "Bolo de laranja",
+            "amount": 1,
+            "price": 30
+          },
+          {
+            "name": "Arroz integral 1kg",
+            "amount": 1,
+            "price": 20
+          },
+          {
+            "name": "Mandioca sem casca",
+            "amount": 2,
+            "price": 9
+          },
+          {
+            "name": "Suco de goiaba 1L",
+            "amount": 3,
+            "price": 22
+          }
+        ],
+        "totalAmountExtraProductsSales": 1426
+      },
+      {
+        "deliveryId": "L4tW0gXHNCsZy8SCWQkM",
+        "date": "2025-09-04",
+        "dateText": "03/09/2025",
+        "cestas": 12,
+        "totalAmountBaseProductsSale": 540,
+        "extraProducts": [
+          {
+            "name": "Alface",
+            "amount": 2,
+            "price": 6
+          },
+          {
+            "name": "Banana 1 kg",
+            "amount": 2,
+            "price": 7
+          },
+          {
+            "name": "Cheiro Verde",
+            "amount": 3,
+            "price": 7
+          },
+          {
+            "name": "Pão de mandioca",
+            "amount": 2,
+            "price": 15
+          },
+          {
+            "name": "Tomatinho",
+            "amount": 9,
+            "price": 7
+          },
+          {
+            "name": " CESTA PEQUENA",
+            "amount": 6,
+            "price": 33
+          },
+          {
+            "name": "Nózinho de Coco",
+            "amount": 3,
+            "price": 15
+          },
+          {
+            "name": "Bolo de laranja",
+            "amount": 1,
+            "price": 30
+          },
+          {
+            "name": "Couve",
+            "amount": 2,
+            "price": 7
+          },
+          {
+            "name": "Ovos (dúzia)",
+            "amount": 15,
+            "price": 18
+          },
+          {
+            "name": "Suco de uva 1,5 litro",
+            "amount": 3,
+            "price": 25
+          },
+          {
+            "name": "Café Cecília (grãos)",
+            "amount": 2,
+            "price": 45
+          },
+          {
+            "name": "Café Cecília (moído)",
+            "amount": 2,
+            "price": 45
+          },
+          {
+            "name": "Queijo Meia Cura G",
+            "amount": 2,
+            "price": 45
+          },
+          {
+            "name": "Suco de manga",
+            "amount": 2,
+            "price": 22
+          },
+          {
+            "name": "Suco de maçã 1L",
+            "amount": 2,
+            "price": 22
+          },
+          {
+            "name": "Nabo",
+            "amount": 1,
+            "price": 7
+          },
+          {
+            "name": "Arroz branco 1kg",
+            "amount": 3,
+            "price": 20
+          },
+          {
+            "name": "Mandioca (com casca)",
+            "amount": 2,
+            "price": 7
+          },
+          {
+            "name": "Suco de goiaba 1L",
+            "amount": 2,
+            "price": 22
+          },
+          {
+            "name": "Feijão carioca 1Kg",
+            "amount": 2,
+            "price": 15
+          },
+          {
+            "name": "Feijão preto 1 kg",
+            "amount": 1,
+            "price": 15
+          },
+          {
+            "name": "Mandioca sem casca",
+            "amount": 4,
+            "price": 9
+          },
+          {
+            "name": "Frango caipira",
+            "amount": 1,
+            "price": 60
+          },
+          {
+            "name": "Queijo Fresco P",
+            "amount": 1,
+            "price": 25
+          },
+          {
+            "name": "Alho-poró",
+            "amount": 2,
+            "price": 7
+          },
+          {
+            "name": "Queijo meia cura 1/2 P",
+            "amount": 1,
+            "price": 25
+          },
+          {
+            "name": "Limão ",
+            "amount": 1,
+            "price": 7
+          }
+        ],
+        "totalAmountExtraProductsSales": 1467
+      },
+      {
+        "deliveryId": "BSCQleZyltofNFcN2lrp",
+        "date": "2025-09-18",
+        "dateText": "17/09/2025",
+        "cestas": 7,
+        "totalAmountBaseProductsSale": 315,
+        "extraProducts": [
+          {
+            "name": " CESTA PEQUENA",
+            "amount": 6,
+            "price": 33
+          },
+          {
+            "name": "Broa de fubá 300g",
+            "amount": 2,
+            "price": 15
+          },
+          {
+            "name": "Café Cecília (moído)",
+            "amount": 3,
+            "price": 45
+          },
+          {
+            "name": "Suco de uva 1,5 litro",
+            "amount": 2,
+            "price": 25
+          },
+          {
+            "name": "Queijo meia cura 1/2 P",
+            "amount": 2,
+            "price": 25
+          },
+          {
+            "name": "Tomatinho",
+            "amount": 11,
+            "price": 7
+          },
+          {
+            "name": "Alecrim",
+            "amount": 1,
+            "price": 6
+          },
+          {
+            "name": "Vagem",
+            "amount": 7,
+            "price": 7
+          },
+          {
+            "name": "Ovos (dúzia)",
+            "amount": 7,
+            "price": 18
+          },
+          {
+            "name": "Queijo Meia Cura G",
+            "amount": 2,
+            "price": 45
+          },
+          {
+            "name": "Tempero caseiro pimenta",
+            "amount": 1,
+            "price": 15
+          },
+          {
+            "name": "Feijão preto 1 kg",
+            "amount": 1,
+            "price": 15
+          },
+          {
+            "name": "Berinjela",
+            "amount": 1,
+            "price": 7
+          },
+          {
+            "name": "Mandioca sem casca",
+            "amount": 2,
+            "price": 9
+          },
+          {
+            "name": "Arroz branco 1kg",
+            "amount": 1,
+            "price": 20
+          },
+          {
+            "name": "Limão ",
+            "amount": 2,
+            "price": 7
+          },
+          {
+            "name": "Suco de manga",
+            "amount": 2,
+            "price": 22
+          },
+          {
+            "name": "Suco de maçã 1L",
+            "amount": 2,
+            "price": 22
+          },
+          {
+            "name": "Alface",
+            "amount": 2,
+            "price": 6
+          },
+          {
+            "name": "Arroz Cateto integral 1 kg",
+            "amount": 1,
+            "price": 22
+          },
+          {
+            "name": "Café Cecília (grãos)",
+            "amount": 1,
+            "price": 45
+          },
+          {
+            "name": "Cheiro Verde",
+            "amount": 1,
+            "price": 7
+          }
+        ],
+        "totalAmountExtraProductsSales": 1074
+      },
+      {
+        "deliveryId": "yNAVC8rMdCzHO1h9imFC",
+        "date": "2025-10-02",
+        "dateText": "01/10/2025",
+        "cestas": 8,
+        "totalAmountBaseProductsSale": 360,
+        "extraProducts": [
+          {
+            "name": "Berinjela",
+            "amount": 3,
+            "price": 7
+          },
+          {
+            "name": "Ovos (dúzia)",
+            "amount": 9,
+            "price": 18
+          },
+          {
+            "name": "Arroz branco 1kg",
+            "amount": 2,
+            "price": 20
+          },
+          {
+            "name": "Couve",
+            "amount": 3,
+            "price": 7
+          },
+          {
+            "name": "Mandioca sem casca",
+            "amount": 2,
+            "price": 9
+          },
+          {
+            "name": "Suco de goiaba 1L",
+            "amount": 2,
+            "price": 22
+          },
+          {
+            "name": "Tomatinho",
+            "amount": 7,
+            "price": 7
+          },
+          {
+            "name": " CESTA PEQUENA",
+            "amount": 5,
+            "price": 33
+          },
+          {
+            "name": "Abobrinha",
+            "amount": 3,
+            "price": 7
+          },
+          {
+            "name": "Alecrim",
+            "amount": 1,
+            "price": 6
+          },
+          {
+            "name": "Alface",
+            "amount": 2,
+            "price": 6
+          },
+          {
+            "name": "Mandioca (com casca)",
+            "amount": 1,
+            "price": 7
+          },
+          {
+            "name": "Arroz integral 1kg",
+            "amount": 1,
+            "price": 20
+          },
+          {
+            "name": "Feijão preto 1 kg",
+            "amount": 1,
+            "price": 15
+          },
+          {
+            "name": "Pimentão",
+            "amount": 1,
+            "price": 7
+          },
+          {
+            "name": "Jabuticaba",
+            "amount": 1,
+            "price": 7
+          },
+          {
+            "name": "Cenoura",
+            "amount": 1,
+            "price": 7
+          },
+          {
+            "name": "Repolho ",
+            "amount": 1,
+            "price": 7
+          },
+          {
+            "name": "Feijão carioca 1Kg",
+            "amount": 1,
+            "price": 15
+          },
+          {
+            "name": "Molho de Tomate",
+            "amount": 1,
+            "price": 33
+          },
+          {
+            "name": "Café Cecília (grãos)",
+            "amount": 1,
+            "price": 45
+          },
+          {
+            "name": "Suco de manga",
+            "amount": 1,
+            "price": 22
+          },
+          {
+            "name": "Suco de maçã 1L",
+            "amount": 2,
+            "price": 22
+          },
+          {
+            "name": "Flocão de Milho 500 gr",
+            "amount": 2,
+            "price": 12
+          },
+          {
+            "name": "Suco de uva 1,5 litro",
+            "amount": 1,
+            "price": 25
+          }
+        ],
+        "totalAmountExtraProductsSales": 837
+      },
+      {
+        "deliveryId": "pmsT3L98diCmFHdu2Bmw",
+        "date": "2025-10-16",
+        "dateText": "15/10/2025",
+        "cestas": 10,
+        "totalAmountBaseProductsSale": 450,
+        "extraProducts": [
+          {
+            "name": " CESTA PEQUENA",
+            "amount": 6,
+            "price": 33
+          },
+          {
+            "name": "Café Cecília (moído)",
+            "amount": 4,
+            "price": 45
+          },
+          {
+            "name": "Suco de manga",
+            "amount": 1,
+            "price": 22
+          },
+          {
+            "name": "Ovos (dúzia)",
+            "amount": 8,
+            "price": 18
+          },
+          {
+            "name": "Bolo de laranja",
+            "amount": 2,
+            "price": 30
+          },
+          {
+            "name": "Geleia de manga com maracujá ",
+            "amount": 1,
+            "price": 20
+          },
+          {
+            "name": "Alho-poró",
+            "amount": 3,
+            "price": 7
+          },
+          {
+            "name": "Cheiro Verde",
+            "amount": 1,
+            "price": 7
+          },
+          {
+            "name": "Tomatinho",
+            "amount": 3,
+            "price": 7
+          },
+          {
+            "name": "Mandioca sem casca",
+            "amount": 3,
+            "price": 9
+          },
+          {
+            "name": "Maxixe",
+            "amount": 1,
+            "price": 7
+          },
+          {
+            "name": "Pimentão",
+            "amount": 1,
+            "price": 7
+          },
+          {
+            "name": "Feijão carioca 1Kg",
+            "amount": 4,
+            "price": 15
+          },
+          {
+            "name": "Abobrinha",
+            "amount": 3,
+            "price": 7
+          },
+          {
+            "name": "Espinafre",
+            "amount": 2,
+            "price": 7
+          },
+          {
+            "name": "Arroz Cateto integral 1 kg",
+            "amount": 1,
+            "price": 22
+          },
+          {
+            "name": "Bolo de fubá com erva doce",
+            "amount": 1,
+            "price": 25
+          },
+          {
+            "name": "Cebolinha",
+            "amount": 1,
+            "price": 7
+          },
+          {
+            "name": "Cenoura",
+            "amount": 3,
+            "price": 7
+          },
+          {
+            "name": "Colorau (100g)",
+            "amount": 1,
+            "price": 7
+          },
+          {
+            "name": "Alface",
+            "amount": 3,
+            "price": 6
+          },
+          {
+            "name": "Arroz branco 1kg",
+            "amount": 1,
+            "price": 20
+          },
+          {
+            "name": "Broa de fubá 300g",
+            "amount": 1,
+            "price": 15
+          },
+          {
+            "name": "Pão de mandioca",
+            "amount": 2,
+            "price": 15
+          },
+          {
+            "name": "Berinjela",
+            "amount": 1,
+            "price": 7
+          }
+        ],
+        "totalAmountExtraProductsSales": 981
       }
     ]
   }
